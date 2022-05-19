@@ -1,0 +1,17 @@
+- in ra lỗi 404 nếu truy cập sai method trên route
+- Sửa phần "đặt hàng" trên listitem thành "Thêm vào giỏ hàng"
+- Đang làm phần update sản phẩm bên admin
+- Xem lại phần xóa sản phẩm bên admin
+
+
+- Đăng ký, Đăng nhập	(rồi)
+- Tìm kiếm sản phẩm	(rồi)
+- Thông tin sản phẩm 	(rồi)
+- Xóa, Thêm sản phẩm vào giỏ hàng (rồi)
+
+admin
+- Thêm danh sách()
+
+
+
+
