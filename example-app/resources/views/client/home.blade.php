@@ -23,7 +23,7 @@
                 <!-- The slideshow -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{{ asset('assets/image/anhhotro/slide1.jpg') }}" alt="hình ảnh">
+                        <img src="{{ asset('assets/image/anhhotro/slide1.jpeg') }}" alt="hình ảnh">
                     </div>
                     <div class="carousel-item">
                         <img src="{{ asset('assets/image/anhhotro/slide2.jpg') }}" alt="hình ảnh">
@@ -34,10 +34,10 @@
                 </div>
                 <!-- Left and right controls -->
                 <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
+                    <span class="carousel-control-prev-icon bg-dark"></span>
                 </a>
                 <a class="carousel-control-next" href="#demo" data-slide="next">
-                    <span class="carousel-control-next-icon"></span>
+                    <span class="carousel-control-next-icon bg-dark"></span>
                 </a>
             </div>
         </section>
@@ -65,8 +65,5 @@
         @empty
         <div class="">Không có sản phẩm</div>
         @endforelse
-@endsection
-
-@section('javascript')
-        
+    <section>
 @endsection

@@ -132,12 +132,12 @@ button[type="submit"] {
 }
 
 .carousel-item img{
-    width: 1199.1px;
-    height: 450px;
+    width: 80%;
 }
 
 .carousel-inner {
     height: 450px;
+    text-align: center;
 }
 
 
@@ -213,10 +213,11 @@ button[type="submit"] {
     width: 20%;
     border-radius: 0 20px 0 0;
 }
-
+/*
 .main>div {
     border-bottom: 1px solid #ffa500;
 }
+*/
 
 /* ARTICLE */
 

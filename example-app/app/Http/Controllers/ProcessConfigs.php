@@ -19,7 +19,7 @@ class ProcessConfigs extends Controller
         if(!empty($data)){
             if(password_verify($post['password'], $data[0]->us_pass)){
                 Session::put('userid', $data[0]->us_id);
-                return redirect()->route($data[0]->us_level);
+                return redirect()->route($data[0]->us_level)->with(['notify' => "Đăng nhập thành công"]);
             }
         }
         return redirect()->back()->with(['error' => "Email hoặc mật khẩu không đúng"]);

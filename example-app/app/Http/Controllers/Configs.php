@@ -25,10 +25,10 @@ class Configs extends Controller
 
     public function searchAges(Request $request){
         $get = $request->input();
-        if($get['search'] != ""){
-            // $search = [ "pd_name" => $get['search']];
-            $data = DB::select("select * from products where pd_name like '".$get['search']."%' || pd_name like '%".$get['search']."%' || pd_name like '%".$get['search']."'",[]);
-            return view('client.listItem',[ "search" => $get['search'], "data" => $data]);
+        if($get['ages'] != ""){
+            $search = $get['ages'];
+            $data = DB::select("select * from products where pd_ages = ".$search,[]);
+            return view('client.listItem',[ "search" => $search, "data" => $data]);
         }else{
             return redirect()->back()->with(['notify' => "Ô tìm kiếm bị trống"]);
         }

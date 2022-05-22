@@ -45,14 +45,15 @@
         @yield('MainSectionContent')
 
         @yield('MainListItem')
-        
     </section>
+    
     <!-- nut go to back -->
     <div class="back-to-top" id="backtop">
         <a href="">
             <img src="{{ asset('assets/clients/image/icon/icon-backtotop.png') }}" alt="back to top" />
         </a>
     </div>
+    @include('client.blocks.footer')
     <script>
         @php
             if(Session::has('notify')){
@@ -62,8 +63,6 @@
         @endphp
         @yield('javascript')
     </script>
-    <!--footer-->
-    @include('client.blocks.footer')
 </body>
 
 </html>

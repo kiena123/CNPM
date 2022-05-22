@@ -236,7 +236,7 @@
     /* FOOTER */
     
     footer {
-        background-image: url(../image/anhhotro/background-footer.PNG);
+        background-image: url(../../image/anhhotro/background-footer.JPG);
         background-size: 100%;
         color: #ffffff;
     }
@@ -245,6 +245,7 @@
         display: flex;
         flex-wrap: wrap;
         width: 80%;
+        justify-content: space-between;
         margin: 0 auto;
         padding: 10px;
         border-bottom: 2px solid #ffa500;
