@@ -65,5 +65,5 @@
         @empty
         <div class="">Không có sản phẩm</div>
         @endforelse
-    <section>
+    </section>
 @endsection

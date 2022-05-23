@@ -30,9 +30,13 @@
                     </li>
                 </ul>
             </div>
+            <form action="./payment" method="post">
             @forelse ( $data as $item )
             <div class="border-top border-secondary bg-white">
                 <ul class="d-flex flex-row m-0 list-unstyled">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="ca_id[]" value="{{$item->ca_id}}">
+                    </div>
                     <li class="text-start" style="width : 55%">
                         <div class="d-flex flex-row">
                             <img class="m-3 mx-5" src="{{ asset($item->pd_image); }}" style=" width: 80px; height: 80px;">
@@ -46,7 +50,7 @@
                         <p>{{$item->pd_prices}}</p>
                     </li>
                     <li class="m-auto text-center" style="width : 15%">
-                            <input class="border border-secondary" type="number" value="1" style="width : 100%" id="quantity" name="quantity" min="1" max="5">
+                        <input class="border border-secondary" type="number" name="quanlity[{{$item->ca_id}}]" value="1" style="width : 100%" min="1" max="5">
                     </li>
                     <li class="m-auto text-center" style="width : 15%">
                         <a href="/client/cart/delete?ca_id={{$item->ca_id}}" class="">Xóa</a>
@@ -56,6 +60,13 @@
             @empty
                 
             @endforelse
+            @csrf
+            <div class="border-top border-secondary bg-white text-center">
+                <button type="submit" class="btn btn-outline-light">
+                    Thanh toán
+                </button>
+            </div>
+            </form>
         </div>
     </section>
 @endsection

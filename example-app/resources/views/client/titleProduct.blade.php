@@ -32,6 +32,10 @@
                 <li class="list-group-item"><span style="width :30%;">Giá tiền : </span>{{ $data[0]->pd_prices }}</li>
                 <li class="list-group-item"><span style="width :30%;">Độ tuổi: </span>{{ $data[0]->pd_ages }}</li>
             </ul>
+            <div class="bg-white mt-5 p-3">
+                <span style="width :30%;">Mô tả sản phẩm : </span>
+                {{ $data[0]->pd_desciption }}
+            </div>
         </div>
     </section>
 @endsection

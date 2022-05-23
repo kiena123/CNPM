@@ -40,7 +40,7 @@
                     </li>
                     <li>
                         <ul class="menu-list">
-                            <li class="w-100"><a class="text-center" href="/searchAges?ages='12+'">12+ Tuổi</a></li>
+                            <li class="w-100"><a class="text-center" href="/searchAges?ages='tren12'">12+ Tuổi</a></li>
                         </ul>
                     </li>
                 </ul>

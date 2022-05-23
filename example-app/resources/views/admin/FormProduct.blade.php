@@ -28,6 +28,10 @@
                 <label for="PriceProduct" style="width: 100%">Giá tiền</label>
                 <input type="number" class="form-control" id="PriceProduct" name="PriceProduct" min="0" value='' placeholder="Giá tiền">
             </div>
+            <div class="form-floating">
+                <label for="floatingTextarea">Desciption</label>
+                <textarea class="form-control" placeholder="Leave a comment here" name="DecriptionProduct" id="floatingTextarea" placeholder="Mô tả sản phẩm"></textarea>
+            </div>
             @csrf
             <button class="btn btn-outline-secondary" type="submit">
                 Thêm
@@ -59,6 +63,10 @@
             <div class="form-floating">
                 <label for="PriceProduct" style="width: 100%">Giá tiền</label>
                 <input type="number" class="form-control" id="PriceProduct" name="PriceProduct" min="0" value='{{ $data[0]->pd_prices }}' placeholder="Giá tiền">
+            </div>
+            <div class="form-floating">
+                <label for="floatingTextarea">Desciption</label>
+                <textarea class="form-control" placeholder="Leave a comment here" name="DesciptionProduct" id="floatingTextarea" placeholder="Mô tả sản phẩm">{{ $data[0]->pd_desciption}}</textarea>
             </div>
             @csrf
             <button class="btn btn-outline-secondary" type="submit">

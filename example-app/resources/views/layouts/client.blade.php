@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Pet Shop|Cửa Hàng Mua Bán Thú Cưng</title>
+    <title>My Kingdom - Vùng đất tuổi thơ</title>
     <meta name="keywords" content="Chó cảnh, pet, cách nuôi chó, mua thú cưng">
     <meta name="description" content="Mua bán chó cảnh">
     <meta http-equiv="refresh" content="3600">
@@ -14,7 +14,7 @@
     <!-- responsive -->
     <link rel="stylesheet" media="mediatype and|not|only (expressions)" href="print.css">
     <!-- icon web -->
-    <link href="{{ asset('assets/clients/image/icon/icon-logo.PNG') }}" rel="shortcut icon" />
+    <link href="{{ asset('assets/image/icon/icon-logo.PNG') }}" rel="shortcut icon" />
     <!-- icon -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
@@ -41,7 +41,7 @@
     @include('client.blocks.navMenu')
 
     <!-- section main -->
-    <section class="main">
+    <section class="main my-3" style="min-height: 25em;">
         @yield('MainSectionContent')
 
         @yield('MainListItem')

@@ -169,6 +169,7 @@ button[type="submit"] {
 
 .info-item {
     width: 33.333333333333333333333%;
+    height : 460px;
     border: 5px solid #f2f2f2;
     border-radius: 1.5vw;
     background-color: #ffffff;
