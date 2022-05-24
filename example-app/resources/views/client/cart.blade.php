@@ -10,7 +10,7 @@
 
 @section('MainListItem')
     <div>
-        <h4>bán chạy nhất</h4>
+        <h4>Giỏ hàng</h4>
     </div>
     <section class="list-item">
         <div class="p-5 m-auto" style="width : 80%">
@@ -58,7 +58,7 @@
                 </ul>
             </div>
             @empty
-                
+                <p class="bg-white m-0 text-center">Chưa có sản phẩm</p>
             @endforelse
             @csrf
             <div class="border-top border-secondary bg-white text-center">

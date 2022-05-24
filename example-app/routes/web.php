@@ -38,6 +38,8 @@ Route::middleware('check.user')->prefix('/')->group(function (){
 Route::middleware('check.user:client')->prefix('client')->group(function (){
     Route::get('/', [HomeController::class, 'index'])->name('client');
     Route::post('/payment', [ProcessClient::class, 'payment']);
+    Route::match(["get","post"],'/payment/add', [ProcessClient::class, 'addPayment']);
+    Route::get('/payment/delete', [ProcessClient::class, 'deletePayment']);
     Route::get('/cart', [HomeController::class, 'cart']);
     Route::get('/cart/add', [ProcessConfigs::class, 'addCart']);
     Route::get('/cart/delete', [ProcessConfigs::class, 'deleteCart']);

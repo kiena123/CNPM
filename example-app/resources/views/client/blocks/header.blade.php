@@ -17,7 +17,7 @@
                 </a>
             </div>
             <div class="col10 header-icon">
-                <a href="client/cart">
+                <a href="/client/cart">
                     <img src="{{ asset('assets/image/icon/giohang-icon.png') }}" alt="Giỏ hàng">
                     <span>Giỏ hàng</span>
                 </a>

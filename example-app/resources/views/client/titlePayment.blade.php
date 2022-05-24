@@ -13,7 +13,6 @@
             <h4>Hóa đơn</h4>
         </div>
         <div class="m-auto" style="width : 80%">
-            <form action="./payment/add" method="post">
                 <table class="table table-hover bg-white">
                     <thead>
                         <tr>
@@ -30,17 +29,16 @@
                         @forelse ( $data as $item )
                         <tr>
                             <td >{{ $item->pd_name; }}</td>
-                            <td >{{ $item->ca_quantity; }}</td>
+                            <td >{{ $item->repd_quantity; }}</td>
                             <td>{{ $item->pd_prices; }}</td>
-                            <td >{{ $item->ca_quantity*$item->pd_prices; }}</td>
+                            <td >{{ $item->repd_quantity*$item->pd_prices; }}</td>
                         @php
-                            $i += $item->ca_quantity*$item->pd_prices;
+                            $i += $item->repd_quantity*$item->pd_prices;
                         @endphp
-                            <input type="hidden" name="ca_id[]" value="{{ $item->ca_id; }}" >
                         </tr>
                         @empty
                         <tr>
-                            <td class="text-center"><p>Không tìm thấy dữ liệu</p></td> 
+                            <p>Không tìm thấy dữ liệu</p>
                         </tr>
                         @endforelse
                     </tbody>     
@@ -48,7 +46,13 @@
                 @csrf
                 <p class="text-center border-top">
                     <span>Tổng tiền : {{ $i; }}</span>
-                    <button class="btn btn-outline-dark" type="submit">Xác nhận</button>
+                    <div class="d-flex">
+                        <div>
+                            <div class="col40">
+                                <a href="/client/payment/delete?re_id={{ $item->re_id }}" class="dathang">Xóa hóa đơn</a>
+                            </div>
+                        </div>
+                    </div>
                 </p>
             </form>
         </div> 
