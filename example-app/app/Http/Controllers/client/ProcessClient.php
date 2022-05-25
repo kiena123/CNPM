@@ -44,6 +44,8 @@ class ProcessClient extends Controller
     public function addPayment(Request $request){
         $idUs = Session::get("userid");
         $methodValue = $request->input();
+        return redirect()->route("client")->with(["notify" => "đã xác nhận mua hàng"]);
+        /*
         if(!empty($methodValue)){
             $insertReceipt = DB::insert("insert into receipt( re_idUs ) values (?)", [ $idUs ]);
             $date = Carbon::create("", "", "", "", "", "", "+7");
@@ -61,6 +63,7 @@ class ProcessClient extends Controller
                         where re_id = repd_idRe and pd_id = repd_idPd and re_id = ?",[ $selectReceipt[0]->re_id ]);
         }
         return view("client.titlePayment", [ "data" => $selectReceiptProduct]);
+        */
     }
 
     public function deletePayment(Request $request){
@@ -77,6 +80,21 @@ class ProcessClient extends Controller
                 return redirect()->back()->with(["notify" => "Lỗi xóa hóa đơn"]);
             }
             return redirect()->route("client")->with(["notify" => "Xóa hóa đơn thành công"]);
+        }
+    }
+
+    public function addComment(Request $request){
+        $idUs = Session::get("userid");
+        $methodPost = $request->input();
+        if(!empty($methodPost["Comment"])){
+            $insert = DB::insert("insert into messages(ms_idUs, ms_idPd, ms_comment) values (?,?,?)",[ $idUs, $methodPost["pd_id"], $methodPost["Comment"]]);
+            if( $insert ){
+                return redirect()->back()->with(["notify" => "Thêm thành công"]);
+            }else{      
+                return redirect()->back()->with(["notify" => "Lỗi xóa hóa đơn"]);
+            }
+        }else{
+            return redirect()->back()->with(["notify" => "Chưa nhập nhận xét"]);
         }
     }
 }

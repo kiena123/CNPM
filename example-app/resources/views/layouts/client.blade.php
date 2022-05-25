@@ -41,7 +41,7 @@
     @include('client.blocks.navMenu')
 
     <!-- section main -->
-    <section class="main my-3" style="min-height: 25em;">
+    <section class="main my-3 pb-2" style="min-height: 25em;">
         @yield('MainSectionContent')
 
         @yield('MainListItem')

@@ -37,6 +37,7 @@ Route::middleware('check.user')->prefix('/')->group(function (){
 
 Route::middleware('check.user:client')->prefix('client')->group(function (){
     Route::get('/', [HomeController::class, 'index'])->name('client');
+    Route::post('/addComment', [ProcessClient::class, 'addComment']);
     Route::post('/payment', [ProcessClient::class, 'payment']);
     Route::match(["get","post"],'/payment/add', [ProcessClient::class, 'addPayment']);
     Route::get('/payment/delete', [ProcessClient::class, 'deletePayment']);
