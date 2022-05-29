@@ -23,7 +23,7 @@ class ProcessAdmin extends Controller
             $image = "assets/image/anhsanpham/".$file_name;
         }
         $insert = DB::insert("INSERT INTO products ( pd_name, pd_ages, pd_image, pd_prices) VALUES ( '".$post["NameProduct"]."', '".$post["AgesProduct"]."', '".$image."', '".$post["PriceProduct"]."')",[]);
-        if($insert == -1 ){
+        if($insert){
             return redirect()->back()->with(["notify" => "Đã thêm thành công sản phẩm"]);
         }else{
             return redirect()->back()->with(["notify" => "Thêm sản phẩm bị lỗi"]);
@@ -48,7 +48,7 @@ class ProcessAdmin extends Controller
         $id = $post["id"];
         $update = DB::update("update products set pd_name = '".$post["NameProduct"]."', pd_ages = '".$post["AgesProduct"]."', pd_image = '".$image."', pd_prices = '".$post["PriceProduct"]."', 
                     pd_desciption = '".$post["DesciptionProduct"]."' where pd_id = ".$post["id"], [  ]);
-        if($update == -1 ){
+        if($update == 1 || $update ){
             return redirect()->back()->with(["notify" => "Đã thêm thành công sản phẩm"]);
         }else{
             return redirect()->back()->with(["notify" => "Thêm sản phẩm bị lỗi"]);

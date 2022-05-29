@@ -32,7 +32,8 @@ class ProcessClient extends Controller
             }
             // dd((int)$all_ca_id_checked);
             $select = DB::select("select ca_id, pd_id, pd_name, pd_prices, ca_quantity from products, (select * from carts where ca_id in (".$all_ca_id_checked.") ) as pc where ca_idPd = pd_id", [  ]);
-            if($select == -1){
+            
+            if(!empty($select)){
                 return redirect()->back()->with(["notify" => "Đã xảy ra lỗi"]);
             }
             return view("client.payment", [ "data" => $select]);
@@ -76,10 +77,10 @@ class ProcessClient extends Controller
                 return redirect()->back()->with(["notify" => "Lỗi xóa hóa đơn"]);
             }
             $deleteRe = DB::delete("delete from receipt where re_id = ?",[ $methodGet["re_id"] ]);
-            if($deleteRe == -1){
-                return redirect()->back()->with(["notify" => "Lỗi xóa hóa đơn"]);
+            if($deleteRe == 1){
+                return redirect()->route("client")->with(["notify" => "Xóa hóa đơn thành công"]);
             }
-            return redirect()->route("client")->with(["notify" => "Xóa hóa đơn thành công"]);
+            return redirect()->back()->with(["notify" => "Lỗi xóa hóa đơn"]);
         }
     }
 
@@ -91,7 +92,7 @@ class ProcessClient extends Controller
             if( $insert ){
                 return redirect()->back()->with(["notify" => "Thêm thành công"]);
             }else{      
-                return redirect()->back()->with(["notify" => "Lỗi xóa hóa đơn"]);
+                return redirect()->back()->with(["notify" => "Thêm không thành công"]);
             }
         }else{
             return redirect()->back()->with(["notify" => "Chưa nhập nhận xét"]);
