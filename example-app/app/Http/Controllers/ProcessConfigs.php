@@ -27,6 +27,7 @@ class ProcessConfigs extends Controller
 
     public function processRegister(Request $request){
         $post = $request->input();
+        
         $post = array_slice($post,0,3);
         $query = [];
         foreach ($post as $key => $value) {
@@ -36,10 +37,10 @@ class ProcessConfigs extends Controller
                 $query["$key"] = password_hash($value,PASSWORD_DEFAULT);
             }
         }
-
-        $result = DB::insert("INSERT INTO users (us_name,us_email,us_pass,us_level) VALUES (':fullname',':email',':password', 'client')", $query);
+        // dd($query);
+        $result = DB::insert("INSERT INTO users (us_name,us_email,us_pass,us_level) VALUES (?,?,?, 'client')", [ $query["fullname"], $query["email"], $query["password"] ]);
         if($result){
-            return redirect()->route('home');
+            return redirect()->route('home')->with(["notify" => "Đã thêm tài khoản thành công"]);
         }else{
             return redirect()->back()->with(['error' => "Đã có lỗi thêm tài khoản"]);
         }
