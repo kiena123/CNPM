@@ -33,7 +33,7 @@ class ProcessClient extends Controller
             // dd((int)$all_ca_id_checked);
             $select = DB::select("select ca_id, pd_id, pd_name, pd_prices, ca_quantity from products, (select * from carts where ca_id in (".$all_ca_id_checked.") ) as pc where ca_idPd = pd_id", [  ]);
             
-            if(!empty($select)){
+            if(empty($select)){
                 return redirect()->back()->with(["notify" => "Đã xảy ra lỗi"]);
             }
             return view("client.payment", [ "data" => $select]);
@@ -45,6 +45,9 @@ class ProcessClient extends Controller
     public function addPayment(Request $request){
         $idUs = Session::get("userid");
         $methodValue = $request->input();
+        foreach ($methodValue["ca_id"] as $key => $value) {
+            $deleteCarts = DB::delete("delete from carts where ca_id = ?",[ $value ]);
+        }
         return redirect()->route("client")->with(["notify" => "đã xác nhận mua hàng"]);
         /*
         if(!empty($methodValue)){
