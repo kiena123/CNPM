@@ -25,7 +25,7 @@
                     </thead>
                     <tbody>
                         @php
-                            $i = 0
+                            $i = 0;
                         @endphp
                         @forelse ( $data as $item )
                         <tr>
@@ -36,7 +36,7 @@
                         @php
                             $i += $item->ca_quantity*$item->pd_prices;
                         @endphp
-                            <input type="hidden" name="ca_id[]" value="{{ $item->ca_id; }}" >
+                            <input type="hidden" name="ca_idPd[{{ $item->pd_id }}]" value="{{ $item->ca_idUs }}" >
                         </tr>
                         @empty
                         <tr>

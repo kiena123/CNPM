@@ -33,7 +33,7 @@ class HomeController extends Controller
 
     public function cart(){
         $id = Session::get("userid");
-        $data = DB::select("select ca_id, pd_id, pd_name, pd_ages, pd_image, pd_prices from carts,products where ca_idPd = pd_id and ca_idUs = ?",[$id]);
+        $data = DB::select("select ca_idUs, pd_id, pd_name, pd_ages, pd_image, pd_prices from carts,products where ca_idPd = pd_id and ca_idUs = ?",[$id]);
         return view('client.cart',["data" => $data]);
     }
 }

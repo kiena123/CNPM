@@ -14,24 +14,17 @@ class ProcessClient extends Controller
     }
 
     public function payment(Request $request){
+        $idus = Session::get("userid");
         $post = $request->input();
-        if(!empty($post["quanlity"]) && !empty($post["ca_id"])){
+
+        if(!empty($post["quanlity"]) && !empty($post["ca_idUs"])){
             foreach ($post["quanlity"] as $key => $value) {
-                $update = DB::update("update carts set ca_quantity = ? where ca_id = ? ", [ $value, $key ]);
+                $update = DB::update("update carts set ca_quantity = ? where ca_idUs = ? and ca_idPd = ? ", [ $value, $idus, $key ]);
                 if($update == -1){
                     redirect()->back()->with(["notify" => "Đã xảy ra lỗi"]);
                 }
             }
-            $all_ca_id_checked = "";
-            foreach ($post["ca_id"] as $key => $value){
-                if($all_ca_id_checked != ""){
-                    $all_ca_id_checked .= ", ".$value;
-                }else{
-                    $all_ca_id_checked .= $value;
-                }
-            }
-            // dd((int)$all_ca_id_checked);
-            $select = DB::select("select ca_id, pd_id, pd_name, pd_prices, ca_quantity from products, (select * from carts where ca_id in (".$all_ca_id_checked.") ) as pc where ca_idPd = pd_id", [  ]);
+            $select = DB::select("select ca_idUs, pd_id, pd_name, pd_prices, ca_quantity from products,carts where ca_idPd = pd_id", [  ]);
             
             if(empty($select)){
                 return redirect()->back()->with(["notify" => "Đã xảy ra lỗi"]);
@@ -45,8 +38,9 @@ class ProcessClient extends Controller
     public function addPayment(Request $request){
         $idUs = Session::get("userid");
         $methodValue = $request->input();
-        foreach ($methodValue["ca_id"] as $key => $value) {
-            $deleteCarts = DB::delete("delete from carts where ca_id = ?",[ $value ]);
+        
+        foreach ($methodValue["ca_idPd"] as $key => $value) {
+            $deleteCarts = DB::delete("delete from carts where ca_idUs = ? and ca_idPd = ? ",[ $value, $key ]);
         }
         return redirect()->route("client")->with(["notify" => "đã xác nhận mua hàng"]);
         /*
@@ -91,7 +85,7 @@ class ProcessClient extends Controller
         $idUs = Session::get("userid");
         $methodPost = $request->input();
         if(!empty($methodPost["Comment"])){
-            $insert = DB::insert("insert into messages(ms_idUs, ms_idPd, ms_comment) values (?,?,?)",[ $idUs, $methodPost["pd_id"], $methodPost["Comment"]]);
+            $insert = DB::insert("insert into messages(ms_idUs, ms_idPd, ms_message ) values (?,?,'".$methodPost["Comment"]."')",[ $idUs, $methodPost["pd_id"] ]);
             if( $insert ){
                 return redirect()->back()->with(["notify" => "Thêm thành công"]);
             }else{      

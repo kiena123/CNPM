@@ -58,7 +58,7 @@
                 @forelse ($selectMessage as $item)
                     <div class="form-floating px-3">
                         <span>{{ $item->us_name }} ({{ $item->us_email }}) : </span>
-                        <p>{{ $item->ms_comment }}</p>
+                        <p>{{ $item->ms_message }}</p>
                     </div>
                 @empty
                     <div class="form-floating px-3">

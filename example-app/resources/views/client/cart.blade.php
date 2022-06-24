@@ -35,7 +35,7 @@
             <div class="border-top border-secondary bg-white">
                 <ul class="d-flex flex-row m-0 list-unstyled">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="ca_id[]" value="{{$item->ca_id}}">
+                        <input class="form-check-input" type="checkbox" name="ca_idUs[]" value="{{$item->pd_id}}">
                     </div>
                     <li class="text-start" style="width : 55%">
                         <div class="d-flex flex-row">
@@ -50,10 +50,10 @@
                         <p>{{$item->pd_prices}}</p>
                     </li>
                     <li class="m-auto text-center" style="width : 15%">
-                        <input class="border border-secondary" type="number" name="quanlity[{{$item->ca_id}}]" value="1" style="width : 100%" min="1" max="5">
+                        <input class="border border-secondary" type="number" name="quanlity[{{$item->pd_id}}]" value="1" style="width : 100%" min="1" max="5">
                     </li>
                     <li class="m-auto text-center" style="width : 15%">
-                        <a href="/client/cart/delete?ca_id={{$item->ca_id}}" class="">Xóa</a>
+                        <a href="/client/cart/delete?pd_id={{$item->pd_id}}" class="">Xóa</a>
                     </li>
                 </ul>
             </div>

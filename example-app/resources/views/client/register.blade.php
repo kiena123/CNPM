@@ -16,16 +16,22 @@
         <label class="form-label" for="fullname">Fullname</label>
       </div>
       
-      <!-- Email input -->
+      <!-- address input -->
       <div class="form-outline mb-4">
-        <input type="email" id="form2Example2" class="form-control" name="email" />
-        <label class="form-label" for="form2Example2">Email address</label>
+        <input type="text" id="address" class="form-control" name="address" />
+        <label class="form-label" for="address">Address</label>
+      </div>
+
+      <!-- email input -->
+      <div class="form-outline mb-4">
+        <input type="email" id="email" class="form-control" name="email" />
+        <label class="form-label" for="email">Email address</label>
       </div>
 
       <!-- Password input -->
       <div class="form-outline mb-4">
-        <input type="password" id="form2Example3" name="password" class="form-control" />
-        <label class="form-label" for="form2Example3">Password</label>
+        <input type="password" id="password" name="password" class="form-control" />
+        <label class="form-label" for="password">Password</label>
       </div>
 
       <!-- 2 column grid layout for inline styling -->

@@ -28,7 +28,7 @@ class ProcessConfigs extends Controller
     public function processRegister(Request $request){
         $post = $request->input();
         
-        $post = array_slice($post,0,3);
+        $post = array_slice($post,0,4);
         $query = [];
         foreach ($post as $key => $value) {
             if($key != "password"){
@@ -38,7 +38,9 @@ class ProcessConfigs extends Controller
             }
         }
         // dd($query);
-        $result = DB::insert("INSERT INTO users (us_name,us_email,us_pass,us_level) VALUES (?,?,?, 'client')", [ $query["fullname"], $query["email"], $query["password"] ]);
+        $result = DB::insert("INSERT INTO users (us_name, us_address, us_email, us_pass, us_level) VALUES ( '".$query["fullname"]."', '".$query["address"]."',
+            '".$query["email"]."','".$query["password"]."', 'client')", [ ]);
+        
         if($result){
             return redirect()->route('home')->with(["notify" => "Đã thêm tài khoản thành công"]);
         }else{
@@ -56,20 +58,30 @@ class ProcessConfigs extends Controller
     }
 
     public function addCart(Request $request){
-        $get = $request->input("pd_id");
-        $insert = DB::insert("INSERT INTO carts (ca_idUs, ca_idPd, ca_quantity) VALUES (?,?,1)",[ Session::get("userid"),$get]);
-        if($insert){
-            return redirect()->back()->with(["notify" => "Đã thêm thành công vào giỏ hàng"]);
-        }else{
-            return redirect()->back()->with(["notify" => "Lỗi khi thêm vào giỏ hàng"]);
+        $usid = Session::get('userid');
+        $get = $request->input();
+
+        $select = DB::select("select * from carts where ca_idUs = ? and ca_idPd = ? ",[ $usid, $get["pd_id"]]);
+        if(sizeof($select) > 0){
+            return redirect()->back()->with(["notify" => "Đã tồn tại trong vào giỏ hàng"]);
+        } else {
+            $insert = DB::insert("INSERT INTO carts (ca_idUs, ca_idPd, ca_quantity) VALUES (?,?,1)",[ $usid, $get["pd_id"]]);
+    
+            if($insert){
+                return redirect()->back()->with(["notify" => "Đã thêm thành công vào giỏ hàng"]);
+            }else{
+                return redirect()->back()->with(["notify" => "Lỗi khi thêm vào giỏ hàng"]);
+            }
         }
     }
 
     public function deleteCart(Request $request){
-        $get = $request->input("ca_id");
-        $delete = DB::delete("DELETE FROM carts WHERE ca_id = ?",[ $get ]);
-        dd($delete);
-        if($delete == 1){
+        $usid = Session::get('userid');
+        $get = $request->input();
+
+        $delete = DB::delete("DELETE FROM carts WHERE ca_idPd = ? and ca_idUs = ? ",[ $get["pd_id"], $usid ]);
+
+        if($delete > 0){
             return redirect()->back()->with(["notify" => "Đã xóa thành công khỏi giỏ hàng"]);
         }else{
             return redirect()->back()->with(["notify" => "Lỗi khi xóa vào giỏ hàng"]);
